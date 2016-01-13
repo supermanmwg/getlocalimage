@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -49,17 +50,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(PHOTO_PICKER_ID == requestCode) {
-            Uri imageUri = data.getData();
-            displayImage.setImageURI(imageUri);
-            Log.d("haha", "image uri is " + imageUri.toString());
-           /* try {
-                Bitmap bitmap = getBitmapFromUri(imageUri);
-                if(null != bitmap) {
-                 //   displayImage.setImageBitmap(bitmap);
-                }
-            } catch (IOException e) {
+            if(RESULT_OK == resultCode) {
+                Uri imageUri = data.getData();
+                displayImage.setImageURI(imageUri);
+                Log.d("haha", "image uri is " + imageUri.toString());
+            } else {
+                Toast.makeText(this, "获得本地图片失败", Toast.LENGTH_SHORT).show();
             }
-*/
         }
     }
 
