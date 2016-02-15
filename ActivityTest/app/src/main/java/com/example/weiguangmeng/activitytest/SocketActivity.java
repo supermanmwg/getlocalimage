@@ -1,6 +1,7 @@
 package com.example.weiguangmeng.activitytest;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.weiguangmeng.activitytest.base.BaseActivity;
@@ -20,9 +21,31 @@ public class SocketActivity extends BaseActivity{
          * the text is retrieved by calling a native
          * function.
          */
-        TextView tv = new TextView(this);
-        tv.setText( stringFromJNI() );
-        setContentView(tv);
+        setContentView(R.layout.socket);
+
+        findViewById(R.id.server).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setServerSocket();
+                    }
+                }).start();
+            }
+        });
+
+        findViewById(R.id.client).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setClientSocket();
+                    }
+                }).start();
+            }
+        });
     }
 
     /* A native method that is implemented by the
@@ -31,6 +54,9 @@ public class SocketActivity extends BaseActivity{
      */
     public native String stringFromJNI();
 
+    public native void setClientSocket();
+
+    public native void setServerSocket();
 
     static {
         System.loadLibrary("hello-jni");

@@ -15,6 +15,22 @@ extern "C" {
 JNIEXPORT jstring JNICALL Java_com_example_weiguangmeng_activitytest_SocketActivity_stringFromJNI
   (JNIEnv *, jobject);
 
+/*
+ * Class:     com_example_weiguangmeng_activitytest_SocketActivity
+ * Method:    setClientSocket
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_example_weiguangmeng_activitytest_SocketActivity_setClientSocket
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_example_weiguangmeng_activitytest_SocketActivity
+ * Method:    setServerSocket
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_example_weiguangmeng_activitytest_SocketActivity_setServerSocket
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif
